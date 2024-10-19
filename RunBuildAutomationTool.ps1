@@ -38,7 +38,7 @@ function Check-GitInstalled {
     }
 }
 
-$ToolArguments = @("run", "--task-name Stage1Task", "-p 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")
+$ToolArguments = @("run", "--task-name Stage1Task", "-p <token goes here>")
 
 # Main script
 Write-Host "Checking if Git is installed..." -ForegroundColor Yellow
