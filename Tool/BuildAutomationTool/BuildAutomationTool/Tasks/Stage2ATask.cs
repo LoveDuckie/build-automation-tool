@@ -45,39 +45,39 @@ public sealed class Stage2ATask : BuildTask
     protected override async Task<int> OnExecuteAsync(BuildContext context, ProgressTask progressTask)
     {
         if (progressTask == null) throw new ArgumentNullException(nameof(progressTask));
-        ArgumentNullException.ThrowIfNull(context);
-        string scriptPath = context.GetScriptsPath(ScriptPath);
-        ProcessRunnerResult result =
-            await new ProcessRunner(new ProcessRunnerParameters()
-            {
-                WorkingDirectory = Path.GetDirectoryName(scriptPath),
-                FilePath = scriptPath,
-                EnvironmentVariables = new Dictionary<string, string>(),
-                Arguments = "build",
-            });
+        // ArgumentNullException.ThrowIfNull(context);
+        // string scriptPath = context.GetScriptsPath(ScriptPath);
+        // ProcessRunnerResult result =
+        //     await new ProcessRunner(new ProcessRunnerParameters()
+        //     {
+        //         WorkingDirectory = Path.GetDirectoryName(scriptPath),
+        //         FilePath = scriptPath,
+        //         EnvironmentVariables = new Dictionary<string, string>(),
+        //         Arguments = "build",
+        //     });
+        //
+        // if (!string.IsNullOrEmpty(result.StandardError))
+        // {
+        //     if (!string.IsNullOrEmpty(result.StandardError))
+        //     {
+        //         using var reader = new StringReader(result.StandardError.Trim());
+        //         while (await reader.ReadLineAsync() is { } line)
+        //         {
+        //             LogError(line);
+        //         }
+        //     }
+        // }
+        //
+        // if (!string.IsNullOrEmpty(result.StandardOutput))
+        // {
+        //     using var reader = new StringReader(result.StandardOutput.Trim());
+        //     while (await reader.ReadLineAsync() is { } line)
+        //     {
+        //         LogInformation(line);
+        //     }
+        // }
 
-        if (!string.IsNullOrEmpty(result.StandardError))
-        {
-            if (!string.IsNullOrEmpty(result.StandardError))
-            {
-                using var reader = new StringReader(result.StandardError.Trim());
-                while (await reader.ReadLineAsync() is { } line)
-                {
-                    LogError(line);
-                }
-            }
-        }
-
-        if (!string.IsNullOrEmpty(result.StandardOutput))
-        {
-            using var reader = new StringReader(result.StandardOutput.Trim());
-            while (await reader.ReadLineAsync() is { } line)
-            {
-                LogInformation(line);
-            }
-        }
-
-        return await Task.FromResult(result.ExitCode);
+        return await Task.FromResult(0);
     }
 
     /// <summary>

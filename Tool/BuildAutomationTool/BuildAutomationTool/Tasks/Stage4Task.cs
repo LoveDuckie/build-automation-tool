@@ -139,40 +139,40 @@ public sealed class Stage4Task : BuildTask
         ArgumentNullException.ThrowIfNull(progressTask);
         ArgumentNullException.ThrowIfNull(context);
 
-        ValidatePaths(context);
-
-        UpdateVersion(context);
-
-        var version = GetVersion(context);
-
-        if (string.IsNullOrEmpty(version))
-        {
-            version = "1.0.0";
-        }
-
-        LogInformation($"Game Data Version: {version}");
-
-        string commitMessage = $"Game Data Version: \"{version}\"";
-        string repositoryRoot = DiscoverRepository(context);
-
-        using (var repo = new Repository(repositoryRoot))
-        {
-            // Retrieve the remote
-            Remote remote = repo.Network.Remotes["origin"];
-            string remoteUrl = remote.Url;
-            if (remoteUrl.StartsWith("ssh://") || remoteUrl.StartsWith("git@"))
-            {
-                context.LogWarning("Detected SSH remote URL. Converting to HTTPS.");
-                string httpsUrl = ConvertSshToHttps(remoteUrl);
-                repo.Network.Remotes.Update("origin", r => r.Url = httpsUrl);
-            }
-
-            if (HasChangesToCommit(repo))
-            {
-                AddChangesToIndex(repo, context);
-                CommitAndPushChanges(repo, commitMessage, context.Settings.GitUserName, context.Settings.GitToken);
-            }
-        }
+        // ValidatePaths(context);
+        //
+        // UpdateVersion(context);
+        //
+        // var version = GetVersion(context);
+        //
+        // if (string.IsNullOrEmpty(version))
+        // {
+        //     version = "1.0.0";
+        // }
+        //
+        // LogInformation($"Game Data Version: {version}");
+        //
+        // string commitMessage = $"Game Data Version: \"{version}\"";
+        // string repositoryRoot = DiscoverRepository(context);
+        //
+        // using (var repo = new Repository(repositoryRoot))
+        // {
+        //     // Retrieve the remote
+        //     Remote remote = repo.Network.Remotes["origin"];
+        //     string remoteUrl = remote.Url;
+        //     if (remoteUrl.StartsWith("ssh://") || remoteUrl.StartsWith("git@"))
+        //     {
+        //         context.LogWarning("Detected SSH remote URL. Converting to HTTPS.");
+        //         string httpsUrl = ConvertSshToHttps(remoteUrl);
+        //         repo.Network.Remotes.Update("origin", r => r.Url = httpsUrl);
+        //     }
+        //
+        //     if (HasChangesToCommit(repo))
+        //     {
+        //         AddChangesToIndex(repo, context);
+        //         CommitAndPushChanges(repo, commitMessage, context.Settings.GitUserName, context.Settings.GitToken);
+        //     }
+        // }
 
         return await Task.FromResult(0);
     }
