@@ -13,7 +13,7 @@ public sealed class CleanCommand : AsyncCommand<CleanCommand.Settings>
     ///     Get the relative path to the script
     /// </summary>
     public string ScriptPath { get; } = Path.Combine("clean.bat");
-    
+
     /// <summary>
     ///     
     /// </summary>
@@ -37,7 +37,7 @@ public sealed class CleanCommand : AsyncCommand<CleanCommand.Settings>
     {
         if (context == null) throw new ArgumentNullException(nameof(context));
         if (settings == null) throw new ArgumentNullException(nameof(settings));
-        
+
         if (settings.ScriptsPath != null && !Path.IsPathFullyQualified(settings.ScriptsPath))
         {
             return ValidationResult.Error("The script path is invalid. It must be an absolute path.");
@@ -46,36 +46,19 @@ public sealed class CleanCommand : AsyncCommand<CleanCommand.Settings>
 
         return base.Validate(context, settings);
     }
-    
+
     /// <summary>
     ///     
     /// </summary>
     /// <param name="context"></param>
     /// <param name="settings"></param>
     /// <returns></returns>
-    public override Task<int> ExecuteAsync(CommandContext context, Settings settings)
+    public override async Task<int> ExecuteAsync(CommandContext context, Settings settings)
     {
         ArgumentNullException.ThrowIfNull(context);
         ArgumentNullException.ThrowIfNull(settings);
 
-        // ProcessRunnerResult result =
-        //     await new ProcessRunner(new ProcessRunnerParameters()
-        //     {
-        //         WorkingDirectory = Path.GetDirectoryName(scriptPath),
-        //         FilePath = scriptPath,
-        //         EnvironmentVariables = new Dictionary<string, string>(),
-        //         Arguments = "build",
-        //     });
-        // if (!string.IsNullOrEmpty(result.StandardError))
-        // {
-        //     LogError(result.StandardError.Trim());
-        // }
-        //
-        // if (!string.IsNullOrEmpty(result.StandardOutput))
-        // {
-        //     LogInformation(result.StandardOutput.Trim());
-        // }
-
-        return Task.FromResult(0);
+        await Task.Delay(new Random().Next(1000, 10000));
+        return await Task.FromResult(0);
     }
 }

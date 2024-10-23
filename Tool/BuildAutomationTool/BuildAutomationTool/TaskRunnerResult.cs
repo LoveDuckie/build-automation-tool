@@ -30,9 +30,18 @@ public sealed class TaskRunnerResult
         Exception = exception;
     }
 
+    /// <summary>
+    ///     
+    /// </summary>
     public Exception? Exception { get; private set; }
 
+    /// <summary>
+    ///     
+    /// </summary>
     public TaskRunnerResultTypes ResultTypes { get; private set; }
 
+    /// <summary>
+    ///     
+    /// </summary>
     public Tree TaskTree { get; private set; }
 }

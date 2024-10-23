@@ -15,7 +15,7 @@ namespace BuildAutomationTool.Commands;
 public sealed class RunCommand : AsyncCommand<RunCommand.Settings>
 {
     /// <summary>
-    ///     Command settings such as scripts path, task name, and Git credentials.
+    /// Represents the settings required to execute a command, including paths, task names, and Git credentials.
     /// </summary>
     public sealed class Settings : CommandSettings
     {
@@ -37,10 +37,21 @@ public sealed class RunCommand : AsyncCommand<RunCommand.Settings>
         [DefaultValue("")]
         public string GitToken { get; init; } = string.Empty;
 
+
+        /// <summary>
+        ///     
+        /// </summary>
         [Description("Whether to execute the task exclusively.")]
         [CommandOption("--exclusive")]
         [DefaultValue(true)]
         public bool Exclusive { get; init; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [CommandOption("-l|--library <VALUE>")]
+        public List<string>? Libraries { get; set; }
     }
 
     /// <summary>
