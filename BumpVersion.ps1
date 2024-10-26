@@ -1,3 +1,4 @@
+#!/usr/bin/env pwsh
 param (
     [string]$ProjectPath = ".\Tool\BuildAutomationTool\BuildAutomationTool",        # Default to current directory
     [switch]$UploadPackage = $false,    # Optional parameter to upload package

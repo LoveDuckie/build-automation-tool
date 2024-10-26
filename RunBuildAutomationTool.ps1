@@ -1,4 +1,4 @@
-
+#!/usr/bin/env pwsh
 function Convert-ToAbsolutePath {
     param (
         [string]$PathToCheck

@@ -1,3 +1,4 @@
+#!/usr/bin/env pwsh
 param (
     [string]$ProjectPath = ".\Tool\BuildAutomationTool\BuildAutomationTool\BuildAutomationTool.csproj",     # Default path is current directory, but you can specify the .csproj or .sln file path
     [string]$OutputDirectory = ".\Binaries\Tool\BuildAutomationTool\Release", # Default output directory, can be overridden

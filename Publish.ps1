@@ -1,3 +1,4 @@
+#!/usr/bin/env pwsh
 param (
     [string]$ProjectPath = ".",                   # Path to the .NET project or solution
     [string]$NuGetServerUrl = "http://localhost:5555/v3/index.json",  # URL of the locally hosted NuGet server
