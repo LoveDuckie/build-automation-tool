@@ -48,7 +48,6 @@ public sealed class Stage4Task : BuildTask
             throw new ArgumentNullException(nameof(versionFilePath));
         }
 
-
         int major = 1, minor = 0, patch = 0;
         if (File.Exists(versionFilePath))
         {
@@ -173,7 +172,7 @@ public sealed class Stage4Task : BuildTask
         //         CommitAndPushChanges(repo, commitMessage, context.Settings.GitUserName, context.Settings.GitToken);
         //     }
         // }
-        int delayTime = new Random().Next(1000, 10000);
+        int delayTime = new Random().Next(1000, 5000);
         await Task.Delay(delayTime);
         return await Task.FromResult(0);
     }

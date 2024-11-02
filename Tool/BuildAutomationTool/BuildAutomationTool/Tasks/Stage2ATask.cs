@@ -46,7 +46,8 @@ public sealed class Stage2ATask : BuildTask
     {
         if (progressTask == null) throw new ArgumentNullException(nameof(progressTask));
         
-        await Task.Delay(new Random().Next(1000, 10000));
+        int delayTime = new Random().Next(1000, 5000);
+        await Task.Delay(delayTime);
         return await Task.FromResult(0);
     }
 

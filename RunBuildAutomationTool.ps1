@@ -16,7 +16,7 @@ function Convert-ToAbsolutePath {
     }
 }
 
-$BinaryPath = ".\Binaries\Tool\BuildAutomationTool\Release\BuildAutomationTool.exe"
+$BinaryPath = ".\Binaries\Tool\BuildAutomationTool\Release\BuildAutomationTool"
 $BinaryPath = Convert-ToAbsolutePath -PathToCheck $BinaryPath
 
 # Check if the binary path exists
@@ -38,7 +38,7 @@ function Check-GitInstalled {
     }
 }
 
-$ToolArguments = @("run", "--task-name Stage1Task", "-p <token goes here>")
+$ToolArguments = @("run", "--task-name Stage1Task")
 
 # Main script
 Write-Host "Checking if Git is installed..." -ForegroundColor Yellow
@@ -46,12 +46,12 @@ Check-GitInstalled
 
 # Run the binary using Start-Process
 Write-Host "Running binary: ""$BinaryPath"" with arguments: ""$ToolArguments""" -ForegroundColor Yellow
-Start-Process -FilePath $BinaryPath -ArgumentList $ToolArguments -Wait -NoNewWindow
+$Process = Start-Process -FilePath $BinaryPath -ArgumentList $ToolArguments -Wait -NoNewWindow -PassThru
 
 # Check the exit code
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "The binary exited with a non-zero exit code: $LASTEXITCODE" -ForegroundColor Red
-    exit $LASTEXITCODE
+if ($Process.ExitCode -ne 0) {
+    Write-Host "The binary exited with a non-zero exit code: ${Process.ExitCode}" -ForegroundColor Red
+    exit $Process.ExitCode
 }
 else {
     Write-Host "The binary ran successfully with exit code 0." -ForegroundColor Green

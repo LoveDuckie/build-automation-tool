@@ -24,6 +24,7 @@ public static class Program
             config.AddCommand<SetupTeamCityCommand>("setup-teamcity");
             config.AddCommand<SetupJenkinsCommand>("setup-jenkins");
         });
-        app.Run(args);
+        int exitCode = app.Run(args);
+        Environment.Exit(exitCode);
     }
 }

@@ -154,8 +154,8 @@ public sealed class RunCommand : AsyncCommand<RunCommand.Settings>
 
             // Initialize build context and runner
             BuildContext buildContext = new BuildContext(settings);
-            TaskRunner runner = new TaskRunnerParallel();
-            // TaskRunner runner = new TaskRunnerSequential();
+            // TaskRunner runner = new TaskRunnerParallel();
+            TaskRunner runner = new TaskRunnerSequential();
             runner.Initialize();
             Tree? taskTree = null;
             // Run tasks with progress display

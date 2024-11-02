@@ -8,7 +8,7 @@ namespace BuildAutomationTool;
 /// <summary>
 ///     The library that loads and manages task libraries.,
 /// </summary>
-public sealed class BuildTaskLibrary : IEnumerable<BuildTask>
+public sealed class BuildTaskLibrary
 {
     /// <summary>
     ///     
@@ -70,20 +70,5 @@ public sealed class BuildTaskLibrary : IEnumerable<BuildTask>
                 BuildTaskTypes.Add(buildTaskType.Name, buildTaskType);
             }
         }
-    }
-
-
-    /// <summary>
-    ///     The IEnumerator generated from yielding
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator<BuildTask> GetEnumerator()
-    {
-        return null;
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
     }
 }

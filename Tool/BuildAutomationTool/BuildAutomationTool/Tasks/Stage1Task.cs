@@ -44,7 +44,7 @@ public sealed class Stage1Task : BuildTask
     protected override async Task<int> OnExecuteAsync(BuildContext context, ProgressTask progressTask)
     {
         ArgumentNullException.ThrowIfNull(context);
-        int delayTime = new Random().Next(1000, 10000);
+        int delayTime = new Random().Next(1000, 5000);
         await Task.Delay(delayTime);
         return await Task.FromResult(0);
     }
