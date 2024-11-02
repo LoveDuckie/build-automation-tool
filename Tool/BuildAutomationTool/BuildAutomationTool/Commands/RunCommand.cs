@@ -19,27 +19,44 @@ public sealed class RunCommand : AsyncCommand<RunCommand.Settings>
     /// </summary>
     public sealed class Settings : CommandSettings
     {
+        /// <summary>
+        /// Gets or sets the absolute path to where the scripts are located.
+        /// This property is used to specify the directory containing the scripts
+        /// to be executed by the command.
+        /// </summary>
         [Description("The absolute path to where the scripts are located.")]
         [CommandOption("-s|--scripts-path")]
         public string? ScriptsPath { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the target build task to be executed.
+        /// This property is necessary for specifying which build task the command should run.
+        /// </summary>
         [Description("The target build task to be executed.")]
         [CommandOption("-t|--task-name")]
         public string? TaskName { get; set; }
 
+        /// <summary>
+        /// Gets the Git username for authentication.
+        /// This property is used to authenticate the user when accessing Git repositories.
+        /// </summary>
         [Description("The Git username for authentication.")]
         [CommandOption("-u|--git-username")]
         [DefaultValue("lucshelton@gmail.com")]
         public string GitUserName { get; init; } = string.Empty;
 
+        /// <summary>
+        /// Gets or initializes the Git token or password for authentication.
+        /// This property is used to authenticate the user when accessing Git repositories.
+        /// </summary>
         [Description("The Git token or password for authentication.")]
         [CommandOption("-p|--git-token")]
         [DefaultValue("")]
         public string GitToken { get; init; } = string.Empty;
 
-
         /// <summary>
-        ///     
+        /// Gets a value indicating whether to execute the task exclusively.
+        /// If set to true, the task will run in isolation from other tasks.
         /// </summary>
         [Description("Whether to execute the task exclusively.")]
         [CommandOption("--exclusive")]
@@ -48,7 +65,7 @@ public sealed class RunCommand : AsyncCommand<RunCommand.Settings>
 
 
         /// <summary>
-        /// 
+        /// Gets or sets the list of library names or paths to be included in the build process.
         /// </summary>
         [CommandOption("-l|--library <VALUE>")]
         public List<string>? Libraries { get; set; }

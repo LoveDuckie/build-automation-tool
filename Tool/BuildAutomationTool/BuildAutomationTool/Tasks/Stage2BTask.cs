@@ -23,7 +23,7 @@ public sealed class Stage2BTask : BuildTask
     public override bool CanRun(BuildContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
-        return File.Exists(context.GetScriptsPath(ScriptPath));
+        return true;
     }
 
     /// <summary>

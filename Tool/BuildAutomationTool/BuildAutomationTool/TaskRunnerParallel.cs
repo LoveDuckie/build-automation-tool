@@ -46,11 +46,11 @@ public sealed class TaskRunnerParallel : TaskRunner
                 }
 
                 lastTreeLevel.AddNode($"[bold white]Task:[/] {currentTaskInstance.GetTaskName()}");
+
                 if (!currentTaskInstance.CanRun(context))
                 {
                     continue;
                 }
-
                 var task = Task.Run(async () =>
                 {
                     currentTaskInstance.BeforeExecute(context);

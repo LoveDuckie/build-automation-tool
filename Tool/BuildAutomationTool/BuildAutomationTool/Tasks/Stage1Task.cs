@@ -22,7 +22,8 @@ public sealed class Stage1Task : BuildTask
     public override bool CanRun(BuildContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
-        return File.Exists(context.GetScriptsPath(ScriptPath));
+        // return File.Exists(context.GetScriptsPath(ScriptPath));
+        return true;
     }
 
     /// <summary>
@@ -43,36 +44,8 @@ public sealed class Stage1Task : BuildTask
     protected override async Task<int> OnExecuteAsync(BuildContext context, ProgressTask progressTask)
     {
         ArgumentNullException.ThrowIfNull(context);
-        // var scriptPath = context.GetScriptsPath(ScriptPath);
-        // var result =
-        //     await new ProcessRunner(new ProcessRunnerParameters()
-        //     {
-        //         WorkingDirectory = Path.GetDirectoryName(scriptPath),
-        //         FilePath = scriptPath,
-        //         EnvironmentVariables = new Dictionary<string, string>(),
-        //         Arguments = "build",
-        //     });
-        // if (!string.IsNullOrEmpty(result.StandardError))
-        // {
-        //     if (!string.IsNullOrEmpty(result.StandardError))
-        //     {
-        //         using var reader = new StringReader(result.StandardError.Trim());
-        //         while (await reader.ReadLineAsync() is { } line)
-        //         {
-        //             LogError(line);
-        //         }
-        //     }
-        // }
-        //
-        // if (!string.IsNullOrEmpty(result.StandardOutput))
-        // {
-        //     using var reader = new StringReader(result.StandardOutput.Trim());
-        //     while (await reader.ReadLineAsync() is { } line)
-        //     {
-        //         LogInformation(line);
-        //     }
-        // }
-
+        int delayTime = new Random().Next(1000, 10000);
+        await Task.Delay(delayTime);
         return await Task.FromResult(0);
     }
 

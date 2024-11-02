@@ -25,14 +25,14 @@ public sealed class Stage3BTask : BuildTask
     public override bool CanRun(BuildContext context)
     {
         if (context == null) throw new ArgumentNullException(nameof(context));
-        return File.Exists(context.GetScriptsPath(ScriptPath));
+        return true;
     }
 
     /// <summary>
-    ///
+    /// Method invoked before the execution of the build task.
     /// </summary>
-    /// <param name="context"></param>
-    /// <exception cref="ArgumentNullException"></exception>
+    /// <param name="context">The build context providing necessary settings and logging.</param>
+    /// <exception cref="ArgumentNullException">Thrown if the provided build context is null.</exception>
     public override void BeforeExecute(BuildContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
@@ -47,7 +47,8 @@ public sealed class Stage3BTask : BuildTask
     protected override async Task<int> OnExecuteAsync(BuildContext context, ProgressTask progressTask)
     {
         ArgumentNullException.ThrowIfNull(context);
-        await Task.Delay(new Random().Next(1000, 10000));
+        int delayTime = new Random().Next(1000, 10000);
+        await Task.Delay(delayTime);
         return await Task.FromResult(0);
     }
 

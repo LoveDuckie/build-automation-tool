@@ -173,7 +173,8 @@ public sealed class Stage4Task : BuildTask
         //         CommitAndPushChanges(repo, commitMessage, context.Settings.GitUserName, context.Settings.GitToken);
         //     }
         // }
-
+        int delayTime = new Random().Next(1000, 10000);
+        await Task.Delay(delayTime);
         return await Task.FromResult(0);
     }
 
