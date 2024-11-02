@@ -42,4 +42,4 @@ jobs:
       if: github.ref == 'refs/heads/main' && success()  # Publish only on successful builds of the main branch
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: cd Tool/BuildAutomationTool && dotnet nuget push ./artifacts/*.nupkg --source "https://nuget.pkg.github.com/LoveDuckie/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+      run: cd Tool/BuildAutomationTool && dotnet nuget push ./artifacts/*.nupkg --source "https://nuget.pkg.github.com/LoveDuckie/index.json" --api-key ${{ secrets.GH_TOKEN }}
