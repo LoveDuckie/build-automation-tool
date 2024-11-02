@@ -23,20 +23,20 @@ jobs:
         dotnet-version: '7.x'  # Specify the version or use 'latest' for the most recent
 
     - name: Install dependencies
-      run: dotnet restore
+      run: cd Tool/BuildAutomationTool && dotnet restore BuildAutomationTool.sln
 
     - name: Lint the code
       run: cd Tool/BuildAutomationTool && dotnet format --verify-no-changes
       continue-on-error: true
 
     - name: Build the project
-      run: cd Tool/BuildAutomationTool && dotnet build --no-restore --configuration Release
+      run: cd Tool/BuildAutomationTool && dotnet build BuildAutomationTool.sln --no-restore --configuration Release
 
     - name: Run unit tests
-      run: cd Tool/BuildAutomationTool && dotnet test --no-build --configuration Release --verbosity normal
+      run: cd Tool/BuildAutomationTool && dotnet test BuildAutomationTool.sln --no-build --configuration Release --verbosity normal
 
     - name: Package the project
-      run: cd Tool/BuildAutomationTool && dotnet pack --no-build --configuration Release -o ./artifacts
+      run: cd Tool/BuildAutomationTool && dotnet pack BuildAutomationTool.sln --no-build --configuration Release -o ./artifacts
 
     - name: Publish package to GitHub Packages
       if: github.ref == 'refs/heads/main' && success()  # Publish only on successful builds of the main branch
