@@ -26,17 +26,17 @@ jobs:
       run: dotnet restore
 
     - name: Lint the code
-      run: dotnet format --verify-no-changes
+      run: cd Tool/BuildAutomationTool && dotnet format --verify-no-changes
       continue-on-error: true
 
     - name: Build the project
-      run: dotnet build --no-restore --configuration Release
+      run: cd Tool/BuildAutomationTool && dotnet build --no-restore --configuration Release
 
     - name: Run unit tests
-      run: dotnet test --no-build --configuration Release --verbosity normal
+      run: cd Tool/BuildAutomationTool && dotnet test --no-build --configuration Release --verbosity normal
 
     - name: Package the project
-      run: dotnet pack --no-build --configuration Release -o ./artifacts
+      run: cd Tool/BuildAutomationTool && dotnet pack --no-build --configuration Release -o ./artifacts
 
     - name: Publish package to GitHub Packages
       if: github.ref == 'refs/heads/main' && success()  # Publish only on successful builds of the main branch
