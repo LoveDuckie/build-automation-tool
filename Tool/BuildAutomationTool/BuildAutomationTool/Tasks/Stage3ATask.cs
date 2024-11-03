@@ -18,11 +18,11 @@ public sealed class Stage3ATask : BuildTask
     private string ScriptPath => "build_stage_3a.bat";
 
     /// <summary>
-    ///
+    /// Determines whether the task can run within the provided build context.
     /// </summary>
-    /// <param name="context"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentNullException"></exception>
+    /// <param name="context">The build context in which the task is running.</param>
+    /// <returns>True if the task can run; otherwise, false.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the context is null.</exception>
     public override bool CanRun(BuildContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
@@ -30,21 +30,22 @@ public sealed class Stage3ATask : BuildTask
     }
 
     /// <summary>
-    ///
+    /// Executes operations required before the task's primary execution phase.
     /// </summary>
-    /// <param name="context"></param>
-    /// <exception cref="ArgumentNullException"></exception>
+    /// <param name="context">The build context in which the task is running.</param>
+    /// <exception cref="ArgumentNullException">Thrown when the context is null.</exception>
     public override void BeforeExecute(BuildContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
     }
 
     /// <summary>
-    ///
+    /// Executes the task asynchronously within the provided build context, updating the given progress.
     /// </summary>
-    /// <param name="context"></param>
-    /// <param name="progress"></param>
-    /// <returns>Returns the result code</returns>
+    /// <param name="context">The build context in which the task is executing.</param>
+    /// <param name="progress">The progress task representing the progress of the execution.</param>
+    /// <returns>Returns a Task representing the asynchronous operation, with the result being the execution result code.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the context is null.</exception>
     protected override async Task<int> OnExecuteAsync(BuildContext context, ProgressTask progress)
     {
         ArgumentNullException.ThrowIfNull(context);
@@ -54,10 +55,10 @@ public sealed class Stage3ATask : BuildTask
     }
 
     /// <summary>
-    ///
+    /// Performs post-execution steps after the main execution of the task has completed.
     /// </summary>
-    /// <param name="context"></param>
-    /// <exception cref="ArgumentNullException"></exception>
+    /// <param name="context">The build context in which the task was executed.</param>
+    /// <exception cref="ArgumentNullException">Thrown when the context is null.</exception>
     public override void AfterExecute(BuildContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
