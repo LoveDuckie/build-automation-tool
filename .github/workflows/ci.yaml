@@ -24,7 +24,7 @@ jobs:
 
     - name: Run BumpVersion script
       shell: pwsh
-      run: BumpVersion.ps1
+      run: ./BumpVersion.ps1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
