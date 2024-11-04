@@ -22,6 +22,12 @@ jobs:
       with:
         dotnet-version: '7.x'  # Specify the version or use 'latest' for the most recent
 
+    - name: Run BumpVersion script
+      shell: pwsh
+      run: ./Tool/BuildAutomationTool/BumpVersion.ps1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Install dependencies
       run: cd Tool/BuildAutomationTool && dotnet restore BuildAutomationTool.sln
 
