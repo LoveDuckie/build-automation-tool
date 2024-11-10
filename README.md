@@ -8,17 +8,46 @@
 
 Originally developed as a technical assessment for a job interview, this project received positive feedback, which led to its open-sourcing. The tool is inspired by industry-standard build systems like **[Cake Build](https://cakebuild.net/)**, **[MSBuild](https://github.com/dotnet/msbuild)**, and **[BuildGraph](https://dev.epicgames.com/documentation/en-us/unreal-engine/buildgraph-for-unreal-engine)**. It leverages a [Directed Acyclic Graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph) to define dependencies and enforce a logical execution order of tasks, facilitating complex build pipelines.
 
+## Demonstration
+
+The **build-automation-tool** can operate in two execution modes: **parallel** and **sequential**. Both modes utilize the task dependency graph but differ in how tasks with shared dependencies are executed.
+
+- **Parallel Execution:** Allows tasks that have shared dependencies but are independent of each other to run concurrently. This mode optimizes runtime by leveraging available resources, reducing the overall build time.
+  
+- **Sequential Execution:** Ensures all tasks are executed one after another, maintaining a strict chronological order based on task dependencies. This mode is ideal for processes where tasks are interdependent or when parallel execution is unnecessary.
+
+Below are animated demonstrations that show how tasks progress in each mode.
+
+<div align="center">
+
+### Parallel Execution
+
+![Parallel](taskrunner-parallel.gif)
+
+In parallel execution mode, tasks are grouped and executed concurrently whenever possible. Tasks with dependencies that do not conflict are run simultaneously, reducing build times.
+
+### Sequential Execution
+
+![Sequential](taskrunner-sequential.gif)
+
+Sequential execution mode processes each task in strict dependency order, from start to finish. This ensures a reliable and controlled build process where tasks execute one at a time.
+
+</div>
+
+With **build-automation-tool**, developers can efficiently manage complex build workflows, streamline repetitive build tasks, and improve productivity by automating dependency-based execution. Whether you’re building small applications or handling large projects with intricate dependencies, this tool provides a flexible and powerful solution for automating your build pipeline.
+
 ## Table of Contents
 
 - [build-automation-tool](#build-automation-tool)
+  - [Demonstration](#demonstration)
+    - [Parallel Execution](#parallel-execution)
+    - [Sequential Execution](#sequential-execution)
+  - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Dependencies](#dependencies)
   - [Usage](#usage)
   - [Instructions](#instructions)
     - [Tool Structure](#tool-structure)
-  - [Demonstration](#demonstration)
-    - [Parallel Execution](#parallel-execution)
-    - [Sequential Execution](#sequential-execution)
 
 ## Features
 
@@ -53,31 +82,3 @@ Detailed usage instructions are available in [INSTRUCTIONS.md](INSTRUCTIONS.md).
 ### Tool Structure
 
 The *Tool* folder organizes the core source files for the **Build Automation Tool**. This folder includes the scripts and configurations necessary to execute build tasks as defined in the technical requirements. Each file is crafted to streamline the execution process, following the task dependencies outlined in the DAG.
-
-## Demonstration
-
-The **build-automation-tool** can operate in two execution modes: **parallel** and **sequential**. Both modes utilize the task dependency graph but differ in how tasks with shared dependencies are executed.
-
-- **Parallel Execution:** Allows tasks that have shared dependencies but are independent of each other to run concurrently. This mode optimizes runtime by leveraging available resources, reducing the overall build time.
-  
-- **Sequential Execution:** Ensures all tasks are executed one after another, maintaining a strict chronological order based on task dependencies. This mode is ideal for processes where tasks are interdependent or when parallel execution is unnecessary.
-
-Below are animated demonstrations that show how tasks progress in each mode.
-
-<div align="center">
-
-### Parallel Execution
-
-![Parallel](taskrunner-parallel.gif)
-
-In parallel execution mode, tasks are grouped and executed concurrently whenever possible. Tasks with dependencies that do not conflict are run simultaneously, reducing build times.
-
-### Sequential Execution
-
-![Sequential](taskrunner-sequential.gif)
-
-Sequential execution mode processes each task in strict dependency order, from start to finish. This ensures a reliable and controlled build process where tasks execute one at a time.
-
-</div>
-
-With **build-automation-tool**, developers can efficiently manage complex build workflows, streamline repetitive build tasks, and improve productivity by automating dependency-based execution. Whether you’re building small applications or handling large projects with intricate dependencies, this tool provides a flexible and powerful solution for automating your build pipeline.
